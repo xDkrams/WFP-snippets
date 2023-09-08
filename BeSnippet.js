@@ -6,10 +6,10 @@ async function generateReport(id, params) {
 
   if (validateUserExist) {
     //validate if admin
-
     const validateAdmin = await db.User.findOne({
       where: { empId: Number(id), admin: true },
     });
+    
     if (!validateAdmin) {
       return {
         status: 400,
@@ -39,7 +39,6 @@ async function generateReport(id, params) {
       loanInfo_LoanTypeInfo: params.loanType.toLowerCase(),
     },
   });
-  // console.log(getDataByDate);
   // Create an array to store user details
   const userDetailPromises = getDataByDate.map(async (item) => {
     // Find the user associated with this loan record
